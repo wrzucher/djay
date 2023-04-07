@@ -3,3 +3,5 @@
 ################################################################################
 
 .vs
+/DjayLanguage.Integration.OpenAI/obj
+/DjayLanguage.Integration.OpenAI/bin/Debug/net7.0
