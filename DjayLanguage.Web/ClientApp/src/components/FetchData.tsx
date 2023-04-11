@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import authService from './api-authorization/AuthorizeService'
 
-export class FetchData extends Component {
+export class FetchData extends Component<{}, { loading: boolean, forecasts: string}> {
   static displayName = FetchData.name;
 
-  constructor(props) {
+  constructor(props: any) {
     super(props);
-    this.state = { forecasts: [], loading: true };
+    this.state = { forecasts: "", loading: true };
   }
 
   componentDidMount() {
     this.populateWeatherData();
   }
 
-  static renderForecastsTable(forecasts) {
+  static renderForecastsTable(forecasts: string) {
     return (
       <div>
             {forecasts}

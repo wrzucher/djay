@@ -5,36 +5,44 @@ import { ApplicationPaths, LoginActions, LogoutActions } from './ApiAuthorizatio
 
 const ApiAuthorizationRoutes = [
   {
-    path: ApplicationPaths.Login,
-    element: loginAction(LoginActions.Login)
+      path: ApplicationPaths.Login,
+      element: loginAction(LoginActions.Login),
+      requireAuth: false,
   },
   {
-    path: ApplicationPaths.LoginFailed,
-    element: loginAction(LoginActions.LoginFailed)
+      path: ApplicationPaths.LoginFailed,
+      element: loginAction(LoginActions.LoginFailed),
+      requireAuth: false,
   },
   {
-    path: ApplicationPaths.LoginCallback,
-    element: loginAction(LoginActions.LoginCallback)
+      spath: ApplicationPaths.LoginCallback,
+      element: loginAction(LoginActions.LoginCallback),
+      requireAuth: false,
   },
   {
-    path: ApplicationPaths.Profile,
-    element: loginAction(LoginActions.Profile)
+      path: ApplicationPaths.Profile,
+      element: loginAction(LoginActions.Profile),
+      requireAuth: true,
   },
   {
-    path: ApplicationPaths.Register,
-    element: loginAction(LoginActions.Register)
+      path: ApplicationPaths.Register,
+      element: loginAction(LoginActions.Register),
+      requireAuth: false,
   },
   {
-    path: ApplicationPaths.LogOut,
-    element: logoutAction(LogoutActions.Logout)
+      path: ApplicationPaths.LogOut,
+      element: logoutAction(LogoutActions.Logout),
+      requireAuth: false,
   },
   {
-    path: ApplicationPaths.LogOutCallback,
-    element: logoutAction(LogoutActions.LogoutCallback)
+      path: ApplicationPaths.LogOutCallback,
+      element: logoutAction(LogoutActions.LogoutCallback),
+      requireAuth: false,
   },
   {
-    path: ApplicationPaths.LoggedOut,
-    element: logoutAction(LogoutActions.LoggedOut)
+      path: ApplicationPaths.LoggedOut,
+      element: logoutAction(LogoutActions.LoggedOut),
+      requireAuth: false,
   }
 ];
 
