@@ -5,7 +5,11 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DjayLanguage.Web", "DjayLanguage.Web\DjayLanguage.Web.csproj", "{C36E376D-E1CE-4EC4-B86E-C85EB645DA09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DjayLanguage.Integration.OpenAI", "DjayLanguage.Integration.OpenAI\DjayLanguage.Integration.OpenAI.csproj", "{0E878036-A592-4CDA-BD57-414B9683CC9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DjayLanguage.Integration.OpenAI", "DjayLanguage.Integration.OpenAI\DjayLanguage.Integration.OpenAI.csproj", "{0E878036-A592-4CDA-BD57-414B9683CC9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DjayLanguage.Core.EntityFramework", "DjayLanguage.Core.EntityFramework\DjayLanguage.Core.EntityFramework.csproj", "{2B55E695-F963-4043-B1A7-AEB2C19926F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DjayLanguage.Core", "DjayLanguage.Core\DjayLanguage.Core.csproj", "{A9B693AC-5996-4706-B46A-85924CADC516}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{0E878036-A592-4CDA-BD57-414B9683CC9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E878036-A592-4CDA-BD57-414B9683CC9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E878036-A592-4CDA-BD57-414B9683CC9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B55E695-F963-4043-B1A7-AEB2C19926F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B55E695-F963-4043-B1A7-AEB2C19926F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B55E695-F963-4043-B1A7-AEB2C19926F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B55E695-F963-4043-B1A7-AEB2C19926F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9B693AC-5996-4706-B46A-85924CADC516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9B693AC-5996-4706-B46A-85924CADC516}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9B693AC-5996-4706-B46A-85924CADC516}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9B693AC-5996-4706-B46A-85924CADC516}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
