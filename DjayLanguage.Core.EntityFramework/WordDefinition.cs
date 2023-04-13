@@ -22,6 +22,9 @@ public class WordDefinition
     [MaxLength(800)]
     public string? Antonyms { get; set; }
 
+    [MaxLength(40)]
+    public string Source { get; set; } = null!;
+
     public Word Word { get; set; } = null!;
 
     [ForeignKey("WordDefinitionId")]

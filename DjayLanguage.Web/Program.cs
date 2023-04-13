@@ -34,8 +34,6 @@ public class Program
         builder.Services.AddScoped<OpenAIManager>();
         builder.Services.AddScoped<OpenAIAPI>(_ => new OpenAIAPI(builder.Configuration["OpenAI:ApiKey"]));
 
-        builder.Services.AddHostedService<DbMigration>();
-
         builder.Services.AddIdentityServer()
             .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
