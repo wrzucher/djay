@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 public class DjayDbContext : DbContext
 {
-    public DjayDbContext(DbContextOptions options)
+    public DjayDbContext(DbContextOptions<DjayDbContext> options)
     : base(options)
     {
     }
