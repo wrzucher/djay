@@ -22,11 +22,8 @@
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="7.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.5" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.5" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.5" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.5" />
   </ItemGroup>
 
   <ItemGroup>
