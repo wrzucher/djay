@@ -1,7 +1,34 @@
+using AutoMapper;
+using DjayLanguage.Core;
+using DjayLanguage.Core.EntityFramework;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddSingleton<Profile, EntityFrameworkMappingProfile>();
+
+builder.Services.AddSingleton<AutoMapper.IConfigurationProvider>(serviceProvider =>
+{
+    var profiles = serviceProvider.GetRequiredService<IEnumerable<Profile>>();
+    var mappingConfig = new MapperConfiguration(mc =>
+    {
+        foreach (var profile in profiles)
+        {
+            mc.AddProfile(profile);
+        }
+    });
+    return mappingConfig;
+});
+
+builder.Services.AddScoped<IMapper, Mapper>();
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+builder.Services.AddDbContext<DjayDbContext>(options =>
+    options.UseSqlServer(connectionString));
+builder.Services.AddScoped<WordManager>();
 
 var app = builder.Build();
 

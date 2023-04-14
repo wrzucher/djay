@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DjayLanguage.Core\DjayLanguage.Core.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,8 +1,59 @@
 ﻿@page
-@model IndexModel
+@model WordsModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Words list";
 }
 
-<div class="text-center">
-</div>
+<form>
+    <div class="input-group mb-3">
+        <input type="text" asp-for="SearchText" class="form-control" placeholder="Search word" aria-label="Search word" aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Filter</button>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var word in Model.Words)
+        {
+            <tr>
+                <th scope="row">@word.Id</th>
+                <td>@word.Name</td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        @if (Model.PageNumber > 1)
+                        {
+                            <li class="page-item">
+                                <a asp-page="./Words" asp-route-pageNumber="@(Model.PageNumber - 1)" asp-route-searchText="@Model.SearchText" class="page-link" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        }
+
+                        @if (Model.Words.Count() == Model.PageSize)
+                        {
+                            <li class="page-item">
+                                    <a asp-page="./Words" asp-route-pageNumber="@(Model.PageNumber + 1)" asp-route-searchText="@Model.SearchText" class="page-link" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            </td>
+         </tr>
+    </tfoot>
+</table>

@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution", "solution", "{B3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DjayLanguage.Administrator", "DjayLanguage.Administrator\DjayLanguage.Administrator.csproj", "{5D98B9CF-8FB9-442F-8DFB-DE198605234E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DjayLanguage.Core.ObjectModels", "DjayLanguage.Core.ObjectModels\DjayLanguage.Core.ObjectModels.csproj", "{2008BC12-01F9-4D64-92A0-8F8C79D55BC2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{5D98B9CF-8FB9-442F-8DFB-DE198605234E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D98B9CF-8FB9-442F-8DFB-DE198605234E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D98B9CF-8FB9-442F-8DFB-DE198605234E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2008BC12-01F9-4D64-92A0-8F8C79D55BC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2008BC12-01F9-4D64-92A0-8F8C79D55BC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2008BC12-01F9-4D64-92A0-8F8C79D55BC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2008BC12-01F9-4D64-92A0-8F8C79D55BC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
