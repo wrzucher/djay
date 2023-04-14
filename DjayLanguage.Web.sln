@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution", "solution", "{B3
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DjayLanguage.Administrator", "DjayLanguage.Administrator\DjayLanguage.Administrator.csproj", "{5D98B9CF-8FB9-442F-8DFB-DE198605234E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{A9B693AC-5996-4706-B46A-85924CADC516}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9B693AC-5996-4706-B46A-85924CADC516}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9B693AC-5996-4706-B46A-85924CADC516}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D98B9CF-8FB9-442F-8DFB-DE198605234E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D98B9CF-8FB9-442F-8DFB-DE198605234E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D98B9CF-8FB9-442F-8DFB-DE198605234E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D98B9CF-8FB9-442F-8DFB-DE198605234E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
