@@ -3,18 +3,15 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-public class Word
+public class WordGroup
 {
     [Key]
     public int Id { get; set; }
 
-    [MaxLength(45)]
+    [MaxLength(50)]
     public string Name { get; set; } = null!;
 
-    [ForeignKey("WordId")]
-    public ICollection<WordDefinition> WordDefinitions { get; set; } = null!;
-
-    [ForeignKey("WordId")]
+    [ForeignKey("WordGroupId")]
     public ICollection<Wordlist> Wordlists { get; set; } = null!;
 }
 

@@ -14,5 +14,7 @@ public class DjayDbContext : DbContext
     public DbSet<Word> Words { get; set; }
     public DbSet<WordDefinition> WordDefinitions { get; set; }
     public DbSet<WordExample> WordExamples { get; set; }
+    public DbSet<WordGroup> WordGroups { get; set; }
+    public DbSet<Wordlist> Wordlists { get; set; }
 }
 
