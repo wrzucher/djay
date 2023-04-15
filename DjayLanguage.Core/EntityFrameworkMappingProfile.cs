@@ -15,5 +15,7 @@ public class EntityFrameworkMappingProfile : Profile
         this.CreateMap<EntityFramework.Word, ObjectModels.Word>();
         this.CreateMap<EntityFramework.WordDefinition, ObjectModels.WordDefinition>();
         this.CreateMap<EntityFramework.WordExample, ObjectModels.WordExample>();
+        this.CreateMap<EntityFramework.WordGroup, ObjectModels.WordGroup>();
+        this.CreateMap<EntityFramework.Wordlist, ObjectModels.Wordlist>();
     }
 }

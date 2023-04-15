@@ -1,0 +1,17 @@
+﻿@page
+@model CreateModel
+@{
+    ViewData["Title"] = $"Create new group";
+}
+
+<partial name="_ServiceErrorCode" model="Model.ErrorCode" />
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="mb-3">
+        <label asp-for="WordGroup.Name" class="form-label">Group name</label>
+        <input type="text" asp-for="WordGroup.Name" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>

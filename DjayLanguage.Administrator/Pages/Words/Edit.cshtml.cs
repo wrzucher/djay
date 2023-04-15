@@ -17,7 +17,7 @@ public class EditModel : PageModel
     }
 
     /// <summary>
-    /// Gets or sets information about word or null.
+    /// Gets or sets information about operation or null.
     /// </summary>
     [BindProperty(SupportsGet = true)]
     public ServiceErrorCode? ErrorCode { get; private set; }

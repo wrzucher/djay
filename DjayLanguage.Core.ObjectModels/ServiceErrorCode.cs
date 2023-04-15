@@ -14,5 +14,10 @@ public enum ServiceErrorCode
     /// Word with the same name already exist.
     /// </summary>
     WordAlreadyExist = 1,
+
+    /// <summary>
+    /// Word group with the same name already exist.
+    /// </summary>
+    WordGroupAlreadyExist = 1,
 }
 

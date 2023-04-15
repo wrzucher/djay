@@ -1,0 +1,38 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Wordlists";
+}
+
+<partial name="_ServiceErrorCode" model="Model.ErrorCode" />
+
+<div class="row">
+    <div class="col-auto">
+        <a asp-page="./Create" class="btn btn-primary text-right">Create group</a>
+    </div>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var wordGroup in Model.WordGroups)
+        {
+            <tr>
+                <th scope="row">
+                    <a asp-page="./Edit" asp-route-id="@wordGroup.Id" aria-label="Edit">
+                        @wordGroup.Id
+                    </a>
+                </th>
+                <td>@wordGroup.Name</td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>

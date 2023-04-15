@@ -24,6 +24,31 @@ public class WordManager
     }
 
     /// <summary>
+    /// Gets shourt information about all word groups.
+    /// </summary>
+    /// <returns>Ordered sequence of <see cref="ObjectModels.WordGroup"/></returns>
+    public IList<ObjectModels.WordGroup> GetWordGroups()
+    {
+        var wordGroups = this.djayDbContext.WordGroups.OrderBy(_ => _.Name);
+        var models = this.mapper.Map<IList<ObjectModels.WordGroup>>(wordGroups);
+        return models;
+    }
+
+    /// <summary>
+    /// Gets word group by id with wordlists.
+    /// </summary>
+    /// <param name="wordGroupId">Id of word group.</param>
+    /// <returns>Information about word group with wordlist in class <see cref="ObjectModels.WordGroup"/></returns>
+    public ObjectModels.WordGroup? GetWordGroup(int wordGroupId)
+    {
+        var wordGroups = this.djayDbContext.WordGroups
+            .Include(_ => _.Wordlists).ThenInclude(_ => _.Word)
+            .FirstOrDefault(_ => _.Id == wordGroupId);
+        var models = this.mapper.Map<ObjectModels.WordGroup?>(wordGroups);
+        return models;
+    }
+
+    /// <summary>
     /// Gets words by parameters.
     /// </summary>
     /// <param name="searchText">Text which should be found in the returned collection.</param>
@@ -86,6 +111,46 @@ public class WordManager
     }
 
     /// <summary>
+    /// Create new word group.
+    /// </summary>
+    /// <param name="groupName">New name of the word group.</param>
+    /// <returns>Result of operation <see cref="ObjectModels.ServiceErrorCode"/></returns>
+    public ServiceErrorCode CreateWordGroup(string groupName)
+    {
+        var wordGroupByName = this.GetWordGroupByName(groupName);
+        if (wordGroupByName is not null)
+        {
+            return ServiceErrorCode.WordAlreadyExist;
+        }
+
+        var newGroup = new EntityFramework.WordGroup();
+        newGroup.Name = groupName;
+        this.djayDbContext.WordGroups.Add(newGroup);
+        this.djayDbContext.SaveChanges();
+        return ServiceErrorCode.Ok;
+    }
+
+    /// <summary>
+    /// Update existing word group.
+    /// </summary>
+    /// <param name="id">Id of the word group which should be updated.</param>
+    /// <param name="groupName">New name of the word group.</param>
+    /// <returns>Result of operation <see cref="ObjectModels.ServiceErrorCode"/></returns>
+    public ServiceErrorCode UpdateWordGroup(int id, string newGroupName)
+    {
+        var wordGroupByName = this.GetWordGroupByName(newGroupName);
+        if (wordGroupByName is not null && wordGroupByName.Id != id)
+        {
+            return ServiceErrorCode.WordAlreadyExist;
+        }
+
+        var group = this.djayDbContext.WordGroups.First(_ => _.Id == id);
+        group.Name = newGroupName;
+        this.djayDbContext.SaveChanges();
+        return ServiceErrorCode.Ok;
+    }
+
+    /// <summary>
     /// Update existing word.
     /// </summary>
     /// <param name="id">Id of the word.</param>
@@ -106,14 +171,26 @@ public class WordManager
     }
 
     /// <summary>
-    /// Get word by his name.
+    /// Get word by name.
     /// </summary>
-    /// <param name="wordName">New name of the word.</param>
+    /// <param name="wordName">Name of the word.</param>
     /// <returns>Information about word in the class <see cref="ObjectModels.Word"/></returns>
     public ObjectModels.Word? GetWordByName( string wordName)
     {
         var word = this.djayDbContext.Words.FirstOrDefault(_ => _.Name == wordName);
         var model = this.mapper.Map<ObjectModels.Word?>(word);
+        return model;
+    }
+
+    /// <summary>
+    /// Get word group by name.
+    /// </summary>
+    /// <param name="wordGroupName">Name of the word group.</param>
+    /// <returns>Information about word group in the class <see cref="ObjectModels.WordGroup"/></returns>
+    public ObjectModels.WordGroup? GetWordGroupByName(string wordGroupName)
+    {
+        var word = this.djayDbContext.WordGroups.FirstOrDefault(_ => _.Name == wordGroupName);
+        var model = this.mapper.Map<ObjectModels.WordGroup?>(word);
         return model;
     }
 }
