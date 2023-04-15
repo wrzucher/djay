@@ -50,6 +50,31 @@ public class WordManager
     }
 
     /// <summary>
+    /// Create words from list.
+    /// </summary>
+    /// <param name="wordlist">Wordlist which should be created.</param>
+    /// <returns>Collection of word which not found and not added to group.</returns>
+    public ServiceErrorCode CreateWords(IList<string> wordlist)
+    {
+        var existingWords = this.djayDbContext.Words.Where(_ => wordlist.Contains(_.Name)).ToList();
+        var existingWordIds = new HashSet<string>(existingWords.Select(_ => _.Name));
+        var wordlistToAdd = wordlist.Where(_ => !existingWordIds.Contains(_)).ToList();
+
+        var wordlistRecords = wordlistToAdd.Select(_ => new EntityFramework.Word()
+        {
+            Name = _,
+        });
+
+        if (wordlistRecords.Any())
+        {
+            this.djayDbContext.Words.AddRange(wordlistRecords);
+            this.djayDbContext.SaveChanges();
+        }
+
+        return ServiceErrorCode.Ok;
+    }
+
+    /// <summary>
     /// Add wordlist to word group.
     /// </summary>
     /// <param name="wordGroupId">Id of word group.</param>
@@ -64,7 +89,7 @@ public class WordManager
             WordGroupId = wordGroupId,
         }).ToList();
 
-        var existingWords= this.djayDbContext.Wordlists.Where(_ => _.WordGroupId == wordGroupId).Select(_ => _.WordId);
+        var existingWords = this.djayDbContext.Wordlists.Where(_ => _.WordGroupId == wordGroupId).Select(_ => _.WordId);
         var existingWordIds = new HashSet<int>(existingWords);
         var wordlistToAdd = wordlistRecords.Where(_ => !existingWordIds.Contains(_.WordId)).ToList();
 

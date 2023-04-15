@@ -39,10 +39,37 @@ public class IndexModel : PageModel
     [BindProperty(SupportsGet = true)]
     public string SearchText { get; set; }
 
+    /// <summary>
+    /// Gets or sets candidates in worlists.
+    /// </summary>
+    [BindProperty]
+    public string? Candidates { get; set; }
+
+    /// <summary>
+    /// Gets or sets information about word or null.
+    /// </summary>
+    [BindProperty(SupportsGet = true)]
+    public ServiceErrorCode? ErrorCode { get; private set; }
+
     public IList<Word> Words { get; private set; }
 
     public void OnGet()
     {
         this.Words = this.wordManager.GetWords(this.SearchText, 0, this.PageNumber, this.PageSize);
+    }
+    public ActionResult OnPostAddWords()
+    {
+        if (this.Candidates == null)
+        {
+            return this.NotFound();
+        }
+
+        var candidates = this.Candidates
+            .Split(new[] { ",", ";", Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
+            .Select(_ => _.Trim().ToUpperInvariant())
+            .ToList();
+        this.ErrorCode = this.wordManager.CreateWords(candidates);
+        this.Words = this.wordManager.GetWords(this.SearchText, 0, this.PageNumber, this.PageSize);
+        return this.Page();
     }
 }

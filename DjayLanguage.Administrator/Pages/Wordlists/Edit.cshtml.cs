@@ -64,7 +64,7 @@ public class EditModel : PageModel
 
         var candidates = this.Candidates
             .Split(new[] { ",", ";", Environment.NewLine },StringSplitOptions.RemoveEmptyEntries)
-            .Select(_ => _.ToUpperInvariant())
+            .Select(_ => _.Trim().ToUpperInvariant())
             .ToList();
         this.NotInlistWords = this.wordManager.AddWordlistToGroup(this.WordGroup.Id, candidates);
         this.WordGroup = this.wordManager.GetWordGroup(this.WordGroup.Id);

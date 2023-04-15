@@ -4,6 +4,40 @@
     ViewData["Title"] = "Words list";
 }
 
+<partial name="_ServiceErrorCode" model="Model.ErrorCode" />
+
+<!-- Button trigger modal -->
+<div class="mb-3">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addWordsModal">
+        Add words to list
+    </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addWordsModal" tabindex="-1" aria-labelledby="addWordsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-page-handler="AddWords">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addWordsModalLabel">Add words</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label asp-for="Candidates" class="form-label">New words</label>
+                        <textarea asp-for="Candidates" class="form-control" rows="10" aria-describedby="wordlistHelp"></textarea>
+                        <div id="wordlistHelp" class="form-text">You can use next separators: comma(,) or semicolon(;) or new line (\r\n)</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Create new words</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <form>
     <div class="input-group mb-3">
         <input type="text" asp-for="SearchText" class="form-control" placeholder="Search word" aria-label="Search word" aria-describedby="button-addon2">
