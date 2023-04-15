@@ -4,6 +4,7 @@ using AutoMapper;
 using DjayLanguage.Core.EntityFramework;
 using DjayLanguage.Core.ObjectModels;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 /// <summary>
 /// The manager for the word context.
@@ -46,6 +47,34 @@ public class WordManager
             .FirstOrDefault(_ => _.Id == wordGroupId);
         var models = this.mapper.Map<ObjectModels.WordGroup?>(wordGroups);
         return models;
+    }
+
+    /// <summary>
+    /// Add wordlist to word group.
+    /// </summary>
+    /// <param name="wordGroupId">Id of word group.</param>
+    /// <param name="wordlist">Wordlist which should be added to group.</param>
+    /// <returns>Collection of word which not found and not added to group.</returns>
+    public IEnumerable<string> AddWordlistToGroup(int wordGroupId, IList<string> wordlist)
+    {
+        var words = this.djayDbContext.Words.Where(_ => wordlist.Contains(_.Name)).ToList();
+
+        var wordlistRecords = words.Select(_ => new EntityFramework.Wordlist() {
+            WordId = _.Id,
+            WordGroupId = wordGroupId,
+        }).ToList();
+
+        var existingWords= this.djayDbContext.Wordlists.Where(_ => _.WordGroupId == wordGroupId).Select(_ => _.WordId);
+        var existingWordIds = new HashSet<int>(existingWords);
+        var wordlistToAdd = wordlistRecords.Where(_ => !existingWordIds.Contains(_.WordId)).ToList();
+
+        if (wordlistToAdd.Any())
+        {
+            this.djayDbContext.Wordlists.AddRange(wordlistToAdd);
+            this.djayDbContext.SaveChanges();
+        }
+
+        return wordlist.Where(_ => !words.Any(w => w.Name == _));
     }
 
     /// <summary>

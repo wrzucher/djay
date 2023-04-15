@@ -23,6 +23,17 @@ public class EditModel : PageModel
     public ServiceErrorCode? ErrorCode { get; private set; }
 
     /// <summary>
+    /// Gets or sets candidates in worlists.
+    /// </summary>
+    [BindProperty]
+    public string? Candidates { get; set; }
+
+    /// <summary>
+    /// Gets or sets candidates which not exist in word list.
+    /// </summary>
+    public IEnumerable<string>? NotInlistWords { get; set; }
+
+    /// <summary>
     /// Gets or sets information about word group or null.
     /// </summary>
     [BindProperty]
@@ -43,7 +54,30 @@ public class EditModel : PageModel
 
         return this.Page();
     }
-    public ActionResult OnPost()
+
+    public ActionResult OnPostAddWords()
+    {
+        if (this.WordGroup is null || this.Candidates == null)
+        {
+            return this.NotFound();
+        }
+
+        var candidates = this.Candidates
+            .Split(new[] { ",", ";", Environment.NewLine },StringSplitOptions.RemoveEmptyEntries)
+            .Select(_ => _.ToUpperInvariant())
+            .ToList();
+        this.NotInlistWords = this.wordManager.AddWordlistToGroup(this.WordGroup.Id, candidates);
+        this.WordGroup = this.wordManager.GetWordGroup(this.WordGroup.Id);
+
+        if (this.NotInlistWords.Count() != this.Candidates.Count())
+        {
+            this.ErrorCode = ServiceErrorCode.Ok;
+        }   
+        
+        return this.Page();
+    }
+
+    public ActionResult OnPost() 
     {
         if (this.WordGroup is null)
         {

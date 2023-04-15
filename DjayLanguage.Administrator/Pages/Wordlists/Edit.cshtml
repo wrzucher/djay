@@ -6,10 +6,50 @@
 
 <partial name="_ServiceErrorCode" model="Model.ErrorCode" />
 
+@if (Model.NotInlistWords is not null && Model.NotInlistWords.Any())
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        These words are not in the dictionary and they are not added to wordlist: @string.Join(", ", Model.NotInlistWords)
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+    
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#wordlistModal">
+  Add words to list
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="wordlistModal" tabindex="-1" aria-labelledby="wordlistModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-page-handler="AddWords">
+                <input type="hidden" asp-for="WordGroup.Id">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="wordlistModalLabel">Wordlist</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label asp-for="Candidates" class="form-label">Wordlist</label>
+                        <textarea asp-for="Candidates" class="form-control" rows="10" aria-describedby="wordlistHelp"></textarea>
+                        <div id="wordlistHelp" class="form-text">You can use next separators: comma(,) or semicolon(;) or new line (\r\n)</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add to group</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <form method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="mb-3">
-        <label asp-for="WordGroup.Name" class="form-label">Word</label>
+        <label asp-for="WordGroup.Name" class="form-label">Group name</label>
         <input type="text" asp-for="WordGroup.Name" class="form-control">
     </div>
 
