@@ -63,7 +63,7 @@ namespace DjayLanguage.Core.EntityFramework.Migrations
 
                     b.Property<string>("Synonyms")
                         .HasMaxLength(800)
-                        .HasColumnType("nvarchar(800)");
+                        .HasColumnType("nvarchar(900)");
 
                     b.Property<int>("WordId")
                         .HasColumnType("int");

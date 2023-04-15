@@ -32,7 +32,7 @@ namespace DjayLanguage.Core.EntityFramework.Migrations
                     WordId = table.Column<int>(type: "int", nullable: false),
                     WordType = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
                     Definition = table.Column<string>(type: "nvarchar(2500)", maxLength: 2500, nullable: false),
-                    Synonyms = table.Column<string>(type: "nvarchar(800)", maxLength: 800, nullable: true),
+                    Synonyms = table.Column<string>(type: "nvarchar(900)", maxLength: 900, nullable: true),
                     Antonyms = table.Column<string>(type: "nvarchar(800)", maxLength: 800, nullable: true),
                     Source = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false)
                 },

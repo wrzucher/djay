@@ -16,7 +16,7 @@ public class WordDefinition
     [MaxLength(2500)]
     public string Definition { get; set; } = null!;
 
-    [MaxLength(800)]
+    [MaxLength(900)]
     public string? Synonyms { get; set; }
 
     [MaxLength(800)]
