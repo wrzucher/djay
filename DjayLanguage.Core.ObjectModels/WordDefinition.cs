@@ -39,5 +39,10 @@ public class WordDefinition
     /// Gets or sets source of definition.
     /// </summary>
     public string Source { get; set; } = null!;
+
+    /// <summary>
+    /// Gets or sets examples of the definition.
+    /// </summary>
+    public IList<WordExample>? WordExamples { get; set; }
 }
 

@@ -1,0 +1,31 @@
+﻿@using DjayLanguage.Core.ObjectModels
+@model ServiceErrorCode?
+
+@{
+    var text = string.Empty;
+    var style = string.Empty;
+
+    switch (Model)
+    {
+        case ServiceErrorCode.Ok:
+            text = "Ok";
+            style = "alert-success";
+            break;
+        case ServiceErrorCode.WordAlreadyExist:
+            text = "The word with this name already exist";
+            style = "alert-danger";
+            break;
+        default:
+            text = Model.ToString();
+            style = "alert-danger";
+            break;
+    }
+}
+
+@if (Model is not null)
+{
+    <div class="alert @style alert-dismissible fade show" role="alert">
+        @text
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}

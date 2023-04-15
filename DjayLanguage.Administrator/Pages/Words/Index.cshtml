@@ -1,5 +1,5 @@
 ﻿@page
-@model WordsModel
+@model IndexModel
 @{
     ViewData["Title"] = "Words list";
 }
@@ -23,7 +23,11 @@
         @foreach(var word in Model.Words)
         {
             <tr>
-                <th scope="row">@word.Id</th>
+                <th scope="row">
+                    <a asp-page="./Edit" asp-route-id="@word.Id" aria-label="Edit">
+                        @word.Id
+                    </a>
+                </th>
                 <td>@word.Name</td>
                 <td></td>
             </tr>

@@ -1,4 +1,4 @@
-﻿namespace DjayLanguage.Administrator.Pages;
+﻿namespace DjayLanguage.Administrator.Pages.Words;
 
 using DjayLanguage.Core;
 using DjayLanguage.Core.ObjectModels;
@@ -6,14 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 
-public class WordsModel : PageModel
+public class IndexModel : PageModel
 {
     private const int DefaultPageSize = 20;
 
     private readonly ILogger<IndexModel> logger;
     private readonly WordManager wordManager;
 
-    public WordsModel(WordManager wordManager, ILogger<IndexModel> logger)
+    public IndexModel(WordManager wordManager, ILogger<IndexModel> logger)
     {
         this.wordManager = wordManager;
         this.logger = logger;
