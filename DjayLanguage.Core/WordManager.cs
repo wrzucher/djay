@@ -124,6 +124,20 @@ public class WordManager
     }
 
     /// <summary>
+    /// Delete word by id with all dependencies.
+    /// </summary>
+    /// <param name="id">Id of the word which should be deleted.</param>
+    /// <returns>Result of operation <see cref="ObjectModels.ServiceErrorCode"/></returns>
+    public ServiceErrorCode DeleteWord(int id)
+    {
+        var word = this.djayDbContext.Words
+            .First(_ => _.Id == id);
+        this.djayDbContext.Words.Remove(word);
+        this.djayDbContext.SaveChanges();
+        return ServiceErrorCode.Ok;
+    }
+
+    /// <summary>
     /// Gets all definitions for word.
     /// </summary>
     /// <param name="wordId">Id of word for which return all definitions.</param>

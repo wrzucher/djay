@@ -63,7 +63,11 @@
                     </a>
                 </th>
                 <td>@word.Name</td>
-                <td></td>
+                <td>
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@word.Id">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
             </tr>
         }
     </tbody>

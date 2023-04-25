@@ -72,4 +72,16 @@ public class IndexModel : PageModel
         this.Words = this.wordManager.GetWords(this.SearchText, 0, this.PageNumber, this.PageSize);
         return this.Page();
     }
+
+    public ActionResult OnPostDelete(int id)
+    {
+        if (id == 0)
+        {
+            return this.NotFound();
+        }
+
+        this.ErrorCode = this.wordManager.DeleteWord(id);
+        this.Words = this.wordManager.GetWords(this.SearchText, 0, this.PageNumber, this.PageSize);
+        return this.Page();
+    }
 }
